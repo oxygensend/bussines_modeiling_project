@@ -1,10 +1,11 @@
 class Prompt:
 
-    def __init__(self, engine, temperature, max_tokens):
+    def __init__(self, engine, temperature, max_tokens, type, prompt):
         self._engine = engine
         self._temperature = temperature
         self._max_tokens = max_tokens
-        self._prompt = "Ile to 2+2"
+        self._prompt = prompt
+        self._type = type
 
     def createPrompt(self, fillprompt):
         self._prompt = fillprompt
@@ -29,3 +30,7 @@ class Prompt:
 
     def setMaxToken(self, max_tokens):
         self._max_tokens = max_tokens
+
+    @property
+    def type(self):
+        return self._type

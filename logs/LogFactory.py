@@ -9,12 +9,16 @@ class LogFactory:
         end_activities = pm4py.get_end_activities(source)
         process_tree = pm4py.discover_process_tree_inductive(source)
         bpmn_model = pm4py.convert_to_bpmn(process_tree)
+        events = pm4py.get_event_attribute_values(source, attribute='concept:name')
+        variants = pm4py.get_variants(source)
 
         return Log(
             start_activities=start_activities, 
             end_activities=end_activities,
             process_tree=process_tree,
             model=bpmn_model,
-            source=source
+            source=source,
+            events=events,
+            variants=variants
             )
 

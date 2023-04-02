@@ -1,2 +1,3 @@
 from .prompt import Prompt
-from .chatGPT import chatGPT
+from .chatGPT import ChatGPT
+from .promptEnum import PromptEnum
