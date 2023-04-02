@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 pandas = "*"
 pm4py = "*"
+openai = "*"
 
 [dev-packages]
 
