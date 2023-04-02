@@ -7,13 +7,15 @@ class Log:
     _source: DataFrame
     _process_tree: ProcessTree
     _model: BPMN
+    _events: dict
 
-    def __init__(self, end_activities, start_activities, source, process_tree, model):
+    def __init__(self, end_activities, start_activities, source, process_tree, model, events):
         self._end_activities = end_activities
         self._start_activities = start_activities
         self._source = source
         self._process_tree = process_tree
         self._model = model
+        self._events = events
 
     @property
     def end_activities(self) -> str:
@@ -34,3 +36,7 @@ class Log:
     @property
     def model(self) -> BPMN:
         return self._model
+    
+    @property
+    def events(self) -> dict:
+        return self._events
