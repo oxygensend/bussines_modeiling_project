@@ -7,6 +7,7 @@ name = "pypi"
 pandas = "*"
 pm4py = "*"
 pyparsing = "*"
+openai = "*"
 
 [dev-packages]
 
