@@ -12,7 +12,6 @@ class ChatGPT:
         openai.api_key = self.key
         prompt = Prompt("gpt-3.5-turbo", 0.6, 2048, PromptEnum.CHAT, question)
         return self.createResponse(prompt)
-        
 
     def createResponse(self, prompt: Prompt):
         if prompt.type == PromptEnum.COMPLETION:
