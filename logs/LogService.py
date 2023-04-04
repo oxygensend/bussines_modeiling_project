@@ -51,18 +51,20 @@ class LogService:
         tree = ET.parse('temp.xes')
         root = tree.getroot()
 
-        # find all events in the XES file
+        # find all events in the XES file end replace activity name with subprocess
         for event in root.findall(".//{http://www.xes-standard.org/}event"):
 
             attribute = event.find(".//{http://www.xes-standard.org/}string[@key='concept:name']")
             name = attribute.get('value')
 
             subproccess = JsonService.find_key_by_value(self._log.subprocesses, name)
-            attribute.set('value', subproccess)
+            if subproccess:
+                attribute.set('value', subproccess)
+
 
         tree.write('temp.xes')
         proccessed_log = LogLoader.load_xes('temp.xes');
-        # os.remove('temp.xes')
+        os.remove('temp.xes')
 
         return proccessed_log
 
