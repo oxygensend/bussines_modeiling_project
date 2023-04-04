@@ -7,9 +7,10 @@ if __name__ == "__main__":
         logMenu = LogMenu()
         log = logMenu.run()
         logService = LogService(log)
-        logService.viewLogWholeProcess()
-        res = logService.findSubprocess()
-        print(res)
+        # logService.find_subprocess()
+        logService.view_whole_log_process()
+        # logService.view_transformed_log_process()
+        # res = logService.findSubprocess()
     except Exception as e:
         print(e)
 

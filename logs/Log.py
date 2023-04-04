@@ -9,6 +9,7 @@ class Log:
     _model: BPMN
     _events: dict
     _variants: dict
+    _subprocesses: dict
 
     def __init__(self, end_activities, start_activities, source, process_tree, model, events, variants):
         self._end_activities = end_activities
@@ -46,3 +47,11 @@ class Log:
     @property
     def variants(self) -> dict:
         return self._variants
+    
+    @property
+    def subprocesses(self) -> dict:
+        return self._subprocesses
+    
+    @subprocesses.setter
+    def subprocesses(self, subprocesses):
+        self._subprocesses = subprocesses
