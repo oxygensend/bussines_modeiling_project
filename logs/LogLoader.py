@@ -13,13 +13,11 @@ class LogLoader:
 
     @staticmethod
     def load_ocel_csv(file_path: str) -> Log:
-        print("DSa")
         data = pd.read_csv(file_path, sep=",")
         cols = ['ocel:eid', 'ocel:timestamp', 'ocel:activity', 'weight', 'price', 'ocel:type:items'
             , 'ocel:type:products', 'ocel:type:customers', 'ocel:type:orders', 'ocel:type:packages'
                 ]
         data.columns = cols
-        print(data['ocel:type:orders'])
         data['time:timestamp'] = pd.to_datetime(data['ocel:timestamp'])
         data['case:concept:name'] = data['ocel:type:orders'].astype(str)
         data['concept:name'] = data['ocel:activity']
