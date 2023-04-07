@@ -30,21 +30,27 @@ class LogService:
         self._log.subprocesses = outputAsDict
         return outputAsDict
 
-    def view_whole_log_process(self) -> None:
+    def view_whole_log_process_petri(self) -> None:
         self._view_log(self._log)
 
-    def view_transformed_log_process(self) -> None:
-        log = self._replace_activities_with_subprocess()
+    def view_transformed_log_process_petri(self) -> None:
+        log = self.replace_activities_with_subprocess()
         self._view_log(log)
 
-    def _view_log(self, log: Log) -> None:
+    def view_process_tree(self, log: Log) -> None:
+        pm4py.view_process_tree(log.process_tree)
+    
+    def view_process_bmpn(self, log: Log) -> None:
+        pm4py.view_bpmn(log.model)
+
+    def _view_process_petri(self, log: Log) -> None:
         LOG = log.source.loc[:,['time:timestamp','case:concept:name','concept:name']]
         dfg = dfg_discovery.apply(LOG)
 
         gviz = dfg_visualization.apply(dfg, log=LOG, variant=dfg_visualization.Variants.FREQUENCY)
         dfg_visualization.view(gviz)
 
-    def _replace_activities_with_subprocess(self) -> Log:
+    def replace_activities_with_subprocess(self) -> Log:
 
         temp =  self._log.source
         for index, row in self._log.source.iterrows():
