@@ -8,7 +8,7 @@ import pandas as pd
 import time
 import logging
 import sys
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 class LogService:
 
@@ -32,12 +32,6 @@ class LogService:
         self._log.subprocesses = outputAsDict
         return outputAsDict
 
-    def view_whole_log_process_petri(self) -> None:
-        self._view_process_petri(self._log)
-
-    def view_transformed_log_process_petri(self) -> None:
-        log = self.replace_activities_with_subprocess()
-        self._view_log(log)
 
     def view_process_tree(self, log: Log) -> None:
         pm4py.view_process_tree(log.process_tree)
@@ -45,7 +39,7 @@ class LogService:
     def view_process_bmpn(self, log: Log) -> None:
         pm4py.view_bpmn(log.model)
 
-    def _view_process_petri(self, log: Log) -> None:
+    def view_process_petri(self, log: Log) -> None:
         LOG = log.source.loc[:,['time:timestamp','case:concept:name','concept:name']]
         dfg = dfg_discovery.apply(LOG)
 
@@ -96,6 +90,14 @@ class LogService:
            if x is False:
                 del self._log.subprocesses[key]
 
+
+    def print_subrpocesses(self):
+        print("Priniting subprocesses groups")
+        for subprocess, activities in self._log.subprocesses.items():
+            print("\nSubprocess name: " + subprocess)
+            print("Activities: ")
+            for activity in activities:
+                print(activity)
             
         
     def _validate_subprocess(self, subprocess) -> bool:
