@@ -37,7 +37,11 @@ An application to semantically analyze the log using the LLM language model (e.g
  ### index.py - it is an executable file
 
   You can run program like that(depends on file extension):
-    -   `python index.py --[csv|xes|ocel_csv|xes] filepath`
+  1. Install all dependencies with pipenv
+  2. Create .env file and paste to it your openAI key
+  3.  run  `python index.py --[csv|xes|ocel_csv|xes] filepath`
+ 
+ 
 ## Stack
   - python
   - pandas
