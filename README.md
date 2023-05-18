@@ -33,6 +33,7 @@ An application to semantically analyze the log using the LLM language model (e.g
     - view_process_tree - displays process tree diagram
     - view_process_bmpn - displays bpmn diagram
     - view_process_petri - displays petri diagram
+    - view_subprocess - view subprocess bpmn diagram
  
  ### index.py - it is an executable file
 
