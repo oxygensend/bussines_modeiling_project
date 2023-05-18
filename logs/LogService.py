@@ -8,7 +8,7 @@ import pandas as pd
 import time
 import logging
 import sys
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 class LogService:
 
@@ -64,24 +64,6 @@ class LogService:
 
         return LogFactory.create(temp)
 
-    @DeprecationWarning
-    def replace_activities_with_subprocess_old_way(self) -> Log:
-        logging.info("started: replace_activities_with_subprocess_old_way")
-        start = time.time()
-        self.subprocesses_validation();
-
-        temp =  self._log.source
-        for index, row in self._log.source.iterrows():
-
-            subproccess = JsonService.find_key_by_value(self._log.subprocesses, row['concept:name'])
-            if subproccess:
-                temp.loc[index, 'concept:name'] = subproccess
-
-        end = time.time()
-
-        logging.info( "finished: replace_activities_with_subprocess_old_way in time: %s", (end - start))
-        return  LogFactory.create(temp)
-
 
     def subprocesses_validation(self):
         subprocess_copy = self._log.subprocesses.copy()
@@ -115,30 +97,6 @@ class LogService:
         
         return False
 
-
-
-    # def search(self,log: ProcessTree, a: list):
-
-    #     # -> - od nastepnego poziomu idziemy od lewej
-    #     #  + oba musza sie wykonac
-    #     #  * to jest jakby petla ktora pozwala nam powtorzyc czynnosc z lewej strony?
-    #     # X wybierana jest jedna czynnosc
-    #     # gdy oba sa None no to wtedy po prostu jest przejscie do dalszego kroku 
-
-    #     if log.operator is None and log.label is None:
-    #         return
-
-
-
-    #     print(log.label, log.operator)
-    #     # if log.operator is None and log.label is not None:
-    #     #     subprocess = JsonService.find_key_by_value(self._log.subprocesses, log.label)
-    #     #     if subprocess:
-    #     #         log._set_label(subprocess)
-
-    #     for i in range(0, len(log.children)):
-    #         self.search(log.children[i]);
-    
 
         
 
