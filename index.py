@@ -12,6 +12,7 @@ if __name__ == "__main__":
         new = logService.replace_activities_with_subprocess() 
 
         logService.print_subrpocesses()
+        logService.view_subprocess()
         logService.view_process_bmpn(new)
         logService.view_process_bmpn(log)
 

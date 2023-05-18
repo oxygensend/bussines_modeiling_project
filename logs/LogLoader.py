@@ -7,8 +7,8 @@ class LogLoader:
 
     @staticmethod
     def load_csv(file_path: str) -> Log:
-        log = pd.read_csv(file_path, sep=';')
-        log = pm4py.format_dataframe(log, case_id='case_id', activity_key='activity', timestamp_key='timestamp')
+        log = pd.read_csv(file_path, sep=',')
+        log = pm4py.format_dataframe(log, case_id='Case ID', activity_key='Activity', timestamp_key='Complete Timestamp')
         return LogFactory.create(log)
 
     @staticmethod

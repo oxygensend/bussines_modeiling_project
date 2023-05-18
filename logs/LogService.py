@@ -32,6 +32,11 @@ class LogService:
         self._log.subprocesses = outputAsDict
         return outputAsDict
 
+    def view_subprocess(self) -> None:
+        for subprocess_name in self._log.subprocesses:
+            subprocess_log = LogFactory.create(self._log.source[self._log.source['concept:name'].isin(self._log.subprocesses.get(subprocess_name))])
+            print("----------------------" + subprocess_name + "----------------------")
+            pm4py.view_bpmn(subprocess_log.model)
 
     def view_process_tree(self, log: Log) -> None:
         pm4py.view_process_tree(log.process_tree)
